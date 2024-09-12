@@ -66,6 +66,8 @@ alias fcode='cd ~ && cd $(fd -t d | fzf); code .;exit'
 alias fnn='cd ~ && cd $(fd -t d | fzf) && nvim .'
 alias copy='xsel --input --clipboard'
 alias paste='xsel --output --clipboard'
+alias anime='ani-cli'
+alias kdrama='dra-cla'
 
 mkcd() {
   if [[ $# -eq 0 ]]; then
@@ -82,6 +84,16 @@ mkcd() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)" # fzf
 
+eval "$(zoxide init zsh)"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/sammaji/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
